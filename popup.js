@@ -14,8 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const playerCardsDiv = document.getElementById("player-cards");
     const tableCardsDiv = document.getElementById("table-cards");
-    const winrateDiv = document.getElementById("winrate");
-    const commonHandsDiv = document.getElementById("common-hands");
+    const content1 = document.getElementById("content1");
+    const content2 = document.getElementById("content2");
+    const title1 = document.getElementById("title1");
+    const title2 = document.getElementById("title2");
+    console.log(winrate);
     if (playerCardsDiv) {
       playerCardsDiv.innerHTML = playerCards.join(", ");
     }
@@ -23,20 +26,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (tableCardsDiv) {
       tableCardsDiv.innerHTML = tableCards.join(", ");
     }
+    //strength
+    if (winrate.strength || winrate.move) {
+      title1.innerHTML = "Strength:";
+      content1.innerHTML = winrate.strength + "%";
 
-    if (winrateDiv) {
-      winrateDiv.innerHTML = winrate.winrate + "%";
-    }
-    if (commonHandsDiv) {
+      //moves
+      title2.innerHTML = "Moves:";
+      content2.innerHTML = winrate.move;
+    } else {
+      //winrate
+      title1.innerHTML = "Winrate:";
+      content1.innerHTML = winrate.winrate + "%";
+
+      //common hands
+      title2.innerHTML = "Common Hands:";
+
       let handsHTML = "";
-      if (winrate.move) {
-        handsHTML = `Move: ${winrate.move}<br><br>`;
-      } else {
-        winrate.hands.forEach((handObj) => {
-          handsHTML += `Hand: ${handObj.hand}<br> Odds: ${handObj.odds}%<br> Winrate: ${handObj.winrate}%<br><br>`;
-        });
-      }
-      commonHandsDiv.innerHTML = handsHTML;
+      winrate.hands.forEach((handObj) => {
+        handsHTML += `Hand: ${handObj.hand}<br> Odds: ${handObj.odds}%<br> Winrate: ${handObj.winrate}%<br><br>`;
+      });
+      content2.innerHTML = handsHTML;
     }
   });
 });
