@@ -16,7 +16,7 @@ To install and run the PokerNow Winrate Browser Extension, follow these steps:
 1. **Clone the Repository**
 
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/Aryan-Vora/PokerNow-Analytics-Extension.git>
    cd pokernow
    ```
 
