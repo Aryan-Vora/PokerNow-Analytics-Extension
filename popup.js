@@ -29,9 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (commonHandsDiv) {
       let handsHTML = "";
-      winrate.hands.forEach((handObj) => {
-        handsHTML += `Hand: ${handObj.hand}<br> Odds: ${handObj.odds}%<br> Winrate: ${handObj.winrate}%<br><br>`;
-      });
+      if (winrate.move) {
+        handsHTML = `Move: ${winrate.move}<br><br>`;
+      } else {
+        winrate.hands.forEach((handObj) => {
+          handsHTML += `Hand: ${handObj.hand}<br> Odds: ${handObj.odds}%<br> Winrate: ${handObj.winrate}%<br><br>`;
+        });
+      }
       commonHandsDiv.innerHTML = handsHTML;
     }
   });
