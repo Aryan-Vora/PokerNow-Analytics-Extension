@@ -63,7 +63,7 @@ function getWinrate(community, hand) {
 
     deck = deck.filter((card) => !knownCards.has(card.toUpperCase()));
 
-    const simulations = 1000;
+    const simulations = 10000;
     const handRanks = {};
     const winCounts = {};
     let overallWins = 0;

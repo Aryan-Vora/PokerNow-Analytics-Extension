@@ -1,5 +1,7 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log("Received message in background script:", message);
+
+  // Store data in local storage
   chrome.storage.local.set(
     {
       tableCards: message.tableCards,
@@ -9,13 +11,21 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     () => {
       if (chrome.runtime.lastError) {
         console.error("Error storing data:", chrome.runtime.lastError);
+        sendResponse({status: "error", error: chrome.runtime.lastError});
       } else {
         console.log("Data stored in local storage:", {
           tableCards: message.tableCards,
           playerCards: message.playerCards,
           winrate: message.winrate,
         });
+
+        // Send a message to the popup to update its content
+        chrome.runtime.sendMessage({type: "updatePopupContent"});
+        sendResponse({status: "success"});
       }
     }
   );
+
+  // Return true to indicate that the response will be sent asynchronously
+  return true;
 });

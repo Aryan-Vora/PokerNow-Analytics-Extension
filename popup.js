@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+function loadContent() {
   console.log("Popup DOM content loaded");
   chrome.storage.local.get(["tableCards", "playerCards", "winrate"], (data) => {
     if (chrome.runtime.lastError) {
@@ -49,4 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
       content2.innerHTML = handsHTML;
     }
   });
+}
+document.addEventListener("DOMContentLoaded", () => {
+  loadContent();
+  setInterval(() => {
+    loadContent();
+  }, 1000);
 });
