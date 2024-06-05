@@ -35,7 +35,7 @@ To install and run the PokerNow Winrate Browser Extension, follow these steps:
 4. **Load the Extension in Your Browser**
    - Open your browser and navigate to the extensions page (e.g., `chrome://extensions/` for Chrome).
    - Enable "Developer mode" (usually found in the top right corner).
-   - Click "Load unpacked" and select the `pokernow` folder you cloned.
+   - Click "Load unpacked" and select the `PokerNow-Analytics-Extension` folder you cloned.
 
 ## Usage
 
