@@ -36,6 +36,6 @@ We may update this privacy policy from time to time. Any changes will be posted 
 
 If you have any questions or concerns about this privacy policy, please contact us at:
 
-- Email: qvsdzl@gmail.com
+- Email: voraaryan1@gmail.com
 
 By using the PokerNow Assistant Browser Extension, you agree to the terms outlined in this privacy policy.
