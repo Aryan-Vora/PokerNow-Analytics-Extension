@@ -2,7 +2,7 @@
 
 ## Overview
 
-This extension provides real-time win rates and common hand statistics while you play on PokerNow.
+This extension provides real-time win rates and common hand statistics while you play on PokerNow. You can find it on the chrome web store soon.
 
 ### Features
 
