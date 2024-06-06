@@ -4,8 +4,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   // Store data in local storage
   chrome.storage.local.set(
     {
-      tableCards: message.tableCards,
-      playerCards: message.playerCards,
       winrate: message.winrate,
     },
     () => {
@@ -14,8 +12,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         sendResponse({status: "error", error: chrome.runtime.lastError});
       } else {
         console.log("Data stored in local storage:", {
-          tableCards: message.tableCards,
-          playerCards: message.playerCards,
           winrate: message.winrate,
         });
 

@@ -155,7 +155,7 @@ function sendResponse() {
   tableCards = getTableCards();
   playerCards = getPlayerCards();
   winrate = getWinrate(tableCards, playerCards);
-  chrome.runtime.sendMessage({tableCards, playerCards, winrate}, (response) => {
+  chrome.runtime.sendMessage({winrate}, (response) => {
     if (chrome.runtime.lastError) {
       console.log("Cards updates and am definitely not hiding any errors!");
     }

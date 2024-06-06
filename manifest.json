@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Poker Odds Calculator",
+    "name": "PokerNow Assistant",
     "version": "1.0",
     "permissions": [
         "activeTab",
