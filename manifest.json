@@ -3,9 +3,7 @@
     "name": "PokerNow Assistant",
     "version": "1.0",
     "permissions": [
-        "activeTab",
-        "storage",
-        "scripting"
+        "storage"
     ],
     "content_scripts": [
         {
