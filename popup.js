@@ -9,8 +9,6 @@ function loadContent() {
     console.log("Data retrieved from storage in popup:", data);
     const winrate = data.winrate || [];
 
-    const playerCardsDiv = document.getElementById("player-cards");
-    const tableCardsDiv = document.getElementById("table-cards");
     const content1 = document.getElementById("content1");
     const content2 = document.getElementById("content2");
     const title1 = document.getElementById("title1");
@@ -39,6 +37,7 @@ function loadContent() {
     }
   });
 }
+
 document.addEventListener("DOMContentLoaded", () => {
   loadContent();
   setInterval(() => {

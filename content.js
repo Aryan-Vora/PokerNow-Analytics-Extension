@@ -1,6 +1,5 @@
 import {Hand} from "pokersolver";
 import {getStrength} from "./strength.js";
-
 let tableCards = [];
 let playerCards = [];
 let winrate = [];
@@ -170,3 +169,105 @@ setInterval(() => {
     console.error("Error during interval execution:", error);
   }
 }, 1000);
+const myDiv = document.createElement("div");
+myDiv.id = "myDiv";
+myDiv.style.width = "200px";
+myDiv.style.height = "100vh";
+myDiv.style.position = "fixed";
+myDiv.style.right = "0";
+myDiv.style.top = "0";
+myDiv.style.backgroundColor = "#201e1f";
+myDiv.style.color = "white";
+myDiv.style.overflow = "auto";
+myDiv.style.zIndex = "1000";
+myDiv.style.padding = "10px";
+
+document.body.appendChild(myDiv);
+
+const pokerNowScreen = document.body;
+pokerNowScreen.style.marginRight = "200px";
+
+const style = document.createElement("style");
+style.innerHTML = `
+  .title {
+    font-size: 32px; 
+    font-weight: bold;
+    margin-top: 30px;
+  }
+  .body {
+    font-size: 24px; 
+  }
+  #showButton {
+    display: none; 
+    position: fixed;
+    right: 10px;
+    top: 0px;
+    z-index: 1001;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+  }
+  #hideButton {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+`;
+document.head.appendChild(style);
+
+function updateDivContent() {
+  chrome.storage.local.get(["winrate"], (data) => {
+    if (chrome.runtime.lastError) {
+      console.error("Error retrieving data:", chrome.runtime.lastError);
+      return;
+    }
+
+    console.log("Data retrieved from storage in popup:", data);
+    const winrate = data.winrate || [];
+
+    let htmlContent = "";
+    if (winrate.strength || winrate.move) {
+      htmlContent += `<div class="title">Strength:</div><div class="body">${winrate.strength}%</div>`;
+      htmlContent += `<div class="title">Moves:</div><div class="body">${winrate.move}</div>`;
+    } else {
+      htmlContent += `<div class="title">Winrate:</div><div class="body">${winrate.winrate}%</div>`;
+      htmlContent += `<div class="title">Common Hands:</div><div class="body">`;
+
+      winrate.hands.forEach((handObj) => {
+        htmlContent += `Hand: ${handObj.hand}<br> Odds: ${handObj.odds}%<br> Winrate: ${handObj.winrate}%<br><br>`;
+      });
+
+      htmlContent += `</div>`;
+    }
+
+    myDiv.innerHTML = htmlContent;
+    myDiv.appendChild(hideButton);
+  });
+}
+
+const showButton = document.createElement("button");
+showButton.id = "showButton";
+showButton.innerHTML = "+";
+showButton.addEventListener("click", () => {
+  myDiv.style.display = "block";
+  showButton.style.display = "none";
+});
+
+const hideButton = document.createElement("button");
+hideButton.id = "hideButton";
+hideButton.innerHTML = "X";
+hideButton.addEventListener("click", () => {
+  myDiv.style.display = "none";
+  showButton.style.display = "block";
+});
+
+document.body.appendChild(showButton);
+updateDivContent();
+setInterval(updateDivContent, 1000);
